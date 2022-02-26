@@ -1,5 +1,10 @@
 <ng-container *ngIf="productInfo">
   <section class="product">
+    <ul class="product__breadcumbs">
+      <li>Catalog</li>
+      <li>Sneckers</li>
+      <li>{{ productInfo.title }}</li>
+    </ul>
     <div class="product__images">
       <app-mobile-slider>
         <img
