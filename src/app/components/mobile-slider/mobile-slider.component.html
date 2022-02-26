@@ -1,0 +1,13 @@
+<div class="product-slider">
+  <div class="product-slider__inner" [ngStyle]="{ left: leftStyle }">
+    <ng-content select="img"></ng-content>
+  </div>
+  <div class="product-slider__pager">
+    <button
+      class="product-slider__pager-item"
+      [ngClass]="{ selected: i === selectedPictureIndex }"
+      *ngFor="let item of pagerItems; let i = index"
+      (click)="selectPicture(i)"
+    ></button>
+  </div>
+</div>
