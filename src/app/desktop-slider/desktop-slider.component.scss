@@ -1,0 +1,30 @@
+.product-slider {
+  max-width: 100%;
+  display: none;
+
+  @media screen and (min-width: 1024px) {
+    display: block;
+  }
+
+  &__main-image {
+    width: 100%;
+  }
+
+  &__pager {
+    margin-top: 5px;
+    display: flex;
+    img {
+      width: calc(100% / 3);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+
+      &:hover {
+        border: 1px solid #000;
+      }
+    }
+  }
+}

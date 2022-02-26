@@ -1,0 +1,13 @@
+<div class="product-slider">
+  <img class="product-slider__main-image" [src]="images[selectedImage]" />
+  <div class="product-slider__pager">
+    <ng-container *ngFor="let image of images; let i = index">
+      <img
+        *ngIf="i !== selectedImage"
+        [src]="image"
+        [alt]="image"
+        (click)="selectImage(i)"
+      />
+    </ng-container>
+  </div>
+</div>
