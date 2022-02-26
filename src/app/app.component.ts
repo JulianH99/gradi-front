@@ -18,6 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   selectedColor = '';
   selectedSize = '';
 
+  // these variables are for modal showing only
   selectedVariant = {};
   showAddToCartModal = false;
 
@@ -27,6 +28,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscription = this.productService.getProductInfo().subscribe({
       next: (info) => {
         this.productInfo = info;
+
+        // perform a property assigment to simplify the ouput of formatted prices
         this.productInfo.price_format = formatNumber(
           this.productInfo.price / 100,
           'en-US',
@@ -41,14 +44,20 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
+  /** return total price to pass on to the modal */
   get totalPrice() {
     return this.quantity * Number(this.productInfo?.price_format);
   }
 
+  /** format total price with proper decimal placement */
   get totalPriceFormat() {
     return formatNumber(this.totalPrice, 'en-US', '1.2');
   }
 
+  /**
+   * determines wether the product can be added or not to the cart
+   * based on the selected color and size
+   */
   get canAddToCart() {
     return this.selectedColor && this.selectedSize;
   }
@@ -66,6 +75,7 @@ export class AppComponent implements OnInit, OnDestroy {
   addToCart() {
     const variants = this.productInfo.variants;
 
+    // finds the variant based on the selected color and size
     const selectedVariant = variants.find(
       (variant: any) =>
         variant.options[0] === this.selectedColor &&

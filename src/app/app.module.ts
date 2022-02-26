@@ -24,7 +24,6 @@ import { AddToCardModalComponent } from './components/add-to-card-modal/add-to-c
     FormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
