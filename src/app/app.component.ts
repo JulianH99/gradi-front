@@ -15,10 +15,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   quantity = 1;
 
-  totalPrice = 0;
-
   selectedColor = '';
   selectedSize = '';
+
+  selectedVariant = {};
+  showAddToCartModal = false;
 
   constructor(private readonly productService: ProductService) {}
 
@@ -36,14 +37,16 @@ export class AppComponent implements OnInit, OnDestroy {
           'en-US',
           '1.2'
         );
-
-        this.totalPrice = this.productInfo.price * this.quantity;
       },
     });
   }
 
+  get totalPrice() {
+    return this.quantity * Number(this.productInfo?.price_format);
+  }
+
   get totalPriceFormat() {
-    return formatNumber(this.totalPrice / 100, 'en-US', '1.2');
+    return formatNumber(this.totalPrice, 'en-US', '1.2');
   }
 
   get canAddToCart() {
@@ -69,7 +72,10 @@ export class AppComponent implements OnInit, OnDestroy {
         variant.options[1] === this.selectedSize
     );
 
-    console.log(selectedVariant);
+    if (selectedVariant) {
+      this.selectedVariant = selectedVariant;
+      this.showAddToCartModal = true;
+    }
   }
 
   ngOnDestroy(): void {

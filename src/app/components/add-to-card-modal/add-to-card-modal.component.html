@@ -1,0 +1,21 @@
+<div class="modal-backdrop" *ngIf="show" [@showDialog]>
+  <div class="modal">
+    <h2 class="modal__title">{{ variant.name }}</h2>
+
+    <div class="modal__body">
+      <p><span>Color:</span> {{ variant.option1 }}</p>
+      <p><span>Size:</span> {{ variant.option2 }}</p>
+
+      <p class="product__price"><span>Price:</span> $ {{ totalPrice }}</p>
+    </div>
+
+    <div class="modal__footer">
+      <button class="modal__action modal__action--cancel" (click)="close()">
+        Close
+      </button>
+      <button class="modal__action modal__action--confirm" (click)="close()">
+        Add to cart
+      </button>
+    </div>
+  </div>
+</div>
